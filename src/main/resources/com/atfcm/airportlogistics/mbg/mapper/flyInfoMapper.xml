@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atfcm.airportlogistics.mbg.mapper.flyInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.atfcm.airportlogistics.mbg.bean.flyInfo" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="oder_number" property="oderNumber" jdbcType="VARCHAR" />
+    <result column="location_begin" property="locationBegin" jdbcType="VARCHAR" />
+    <result column="time_begin" property="timeBegin" jdbcType="TIMESTAMP" />
+    <result column="location_end" property="locationEnd" jdbcType="VARCHAR" />
+    <result column="time_end" property="timeEnd" jdbcType="TIMESTAMP" />
+    <result column="location_now" property="locationNow" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

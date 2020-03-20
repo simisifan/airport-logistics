@@ -1,0 +1,48 @@
+/* 左侧导航bar */
+.ul1 li {
+
+    margin-left: 150px;
+    font-size: 19px;
+}
+
+/* 相对定位 */
+.related {
+    position: relative;
+}
+
+/* 鼠标移动上去显示 */
+.app:hover .qrcode {
+    /* 方法1 */
+    /* display: block; */
+
+
+    /* 方法2 */
+    height: 250px;
+
+
+}
+
+/* 下拉效果 盒子*/
+.qrcode {
+    /* 方法1 */
+    /* 	 display: none; */
+
+    /* 方法2 */
+    overflow: hidden;
+    height: 0;
+
+    position: absolute;
+    left: -100px;
+    top: 50px;
+    width: 400px;
+
+    line-height: 100px;
+    border-bottom: 1px solid silver;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 2%;
+    z-index: 10;
+    /* 动画效果 */
+    transition: height 0.4s;
+
+} 

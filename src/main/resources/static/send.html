@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--R 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+
+    <title>主页</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- 引入公共的样式表 -->
+    <link rel="stylesheet" href="css/public.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap-theme.css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <script src="js/distpicker.min.js"></script>
+
+</head>
+
+<style>
+
+    .sb {
+        border: red;
+    }
+
+
+    #form-main {
+        position: relative;
+        width: 969px;
+        height: 522px;
+        background-color: royalblue;
+
+    }
+
+    .bt {
+
+    }
+
+    .bt-item {
+        float: left;
+        margin-left: 90px;
+        color: rgb(204, 204, 204);
+
+    }
+
+    .bt-item-div {
+        font-size: 20px;
+        color: rgb(204, 204, 204);
+        border-bottom: 2px solid silver;
+    }
+
+
+    .form-item {
+        overflow: hidden;
+        width: 800px;
+        height: 400px;
+        background-color: rgb(204, 204, 204);
+        position: absolute;
+        margin-left: 30px;
+        display: none;
+    }
+
+    .next-bt {
+        left: 680px;
+        top: 470px;
+        position: absolute;
+        width: 223px;
+        height: 42px;
+        background-color: rgb(220, 30, 50);
+        color: white;
+
+    }
+
+    .activ-color {
+        color: red;
+
+    }
+
+    .activ-color-boder {
+        color: red;
+        border-bottom: 2px solid red;
+    }
+</style>
+<body>
+<form id="form-main" action="#" class="img-list">
+    <ul class="bt clearfix">
+        <li class="bt-item activ-color">
+            <div class="bt-item-div activ-color-boder ">01</div>
+            寄件人信息
+        </li>
+        <li class="bt-item">
+            <div class="bt-item-div ">02</div>
+            收件人信息
+        </li>
+        <li class="bt-item">
+            <div class="bt-item-div ">03</div>
+            完成下单 &nbsp;
+        </li>
+    </ul>
+
+
+    <div class="img-wrapper clearfix">
+        <!-- 寄件人信息 -->
+        <div class="form-item " style="display: block;">
+            <h1>寄方信息</h1> <span>*为必填项</span>
+            <div class="sender">
+                <label style="color: red;">* </label><span>姓名&nbsp;&nbsp;&nbsp;</span>
+                <input type="text" name="senderName" placeholder="请填写联系人姓名"/><br>
+                <label style="color: red;">* </label><span>手机号</span>
+                <input type="phone" name="phoneNumber" placeholder="请填写手机号码"/><br>
+
+                <div data-toggle="distpicker">
+                    <label style="color: red;">* </label> <span>省市区(县)</span>
+                    <select class="sel1" data-province="浙江省"></select>
+                    <select class="sel2" data-city="杭州市"></select>
+                    <select class="sel3" data-district="西湖区"></select>
+                </div>
+                <span>产品类型</span>
+                <select class="sel4">
+                    <option>电子产品</option>
+                    <option>医疗设别</option>
+                    <option>宠物运输</option>
+                    <option>文件护照</option>
+                    <option>其他</option>
+                </select>
+
+            </div>
+        </div>
+
+        <!-- 收件人信息 -->
+        <div class="form-item">
+            <h1>收方信息</h1> <span>*为必填项</span>
+            <div class="sender">
+                <label style="color: red;">* </label><span>姓名&nbsp;&nbsp;&nbsp;</span>
+                <input type="text" name="senderName" placeholder="请填写联系人姓名"/><br>
+                <label style="color: red;">* </label><span>手机号</span>
+                <input type="phone" name="phoneNumber" placeholder="请填写手机号码"/><br>
+
+                <div data-toggle="distpicker">
+                    <label style="color: red;">* </label> <span>省市区(县)</span>
+                    <select class="sel1" data-province="浙江省"></select>
+                    <select class="sel2" data-city="杭州市"></select>
+                    <select class="sel3" data-district="西湖区"></select>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- 完成下单 -->
+        <div class="form-item">
+            <img src="img/banner3.png" alt="">
+        </div>
+    </div>
+
+    <button id="next" class="btn  next-bt">下一步 →</button>
+</form>
+
+</body>
+</html>
+<script>
+    var index = 0;
+    $(function () {
+        $('.bt-item').click(function () {
+
+            index = $(this).index();
+
+            if (index >= 2) {
+                $('#next').text('提交');
+                $('#next').css('color', 'white');
+            } else {
+                $('#next').text('下一步 →');
+                $('#next').css('color', 'white');
+            }
+
+            /* 当前对对象（下面的字体） 变红 */
+
+            $(this).addClass("activ-color").siblings().removeClass('activ-color')
+            /* 当前元素的子元素  字体 和下边框  变红*/;
+            $(this).children('div').addClass('activ-color-boder')
+            $(this).siblings().children('div').removeClass('activ-color-boder');
+
+            /* 处理图片 */
+            $('.form-item').eq(index).fadeIn().siblings().fadeOut();
+
+            return false;
+        })
+
+
+        $('#next').click(function () {
+            index++;
+
+            /* 准备提交 */
+            if (index == 2) {
+                $(this).text('提交');
+                $(this).css('color', 'white');
+            }
+            if (index == 3) {
+                var a = confirm('确定提交?')
+                if (a) {
+                    var province = '&province=' + $('.sel1').val();
+                    var city = '&city=' + $('.sel2').val();
+                    var area = '&area=' + $('.sel3').val();
+                    var param = $('#form-main').serialize() + province + city + area;
+                    alert(param);
+                    $.post('send', param, function (data) {
+
+                    })
+                } else {
+                    location.href = 'send.html';
+                }
+
+            }
+
+            $('.form-item').eq(index).fadeIn().siblings().fadeOut();
+
+            /* 01 02 03 变红 */
+            $('.bt-item').eq(index).addClass("activ-color").siblings().removeClass('activ-color')
+
+            /* 当前元素的子元素  字体 和下边框  变红*/;
+            $('.bt-item').eq(index).children('div').addClass('activ-color-boder')
+            $('.bt-item').eq(index).siblings().children('div').removeClass('activ-color-boder');
+            return false;
+
+        });
+    })
+
+
+</script>
+

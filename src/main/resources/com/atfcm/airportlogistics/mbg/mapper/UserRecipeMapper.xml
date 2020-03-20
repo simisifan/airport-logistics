@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atfcm.airportlogistics.mbg.mapper.UserRecipeMapper" >
+  <resultMap id="BaseResultMap" type="com.atfcm.airportlogistics.mbg.bean.UserRecipe" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="oder_number" property="oderNumber" jdbcType="VARCHAR" />
+    <result column="recipename" property="recipename" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="send_id" property="sendId" jdbcType="INTEGER" />
+  </resultMap>
+</mapper>
