@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 public interface UserMapper extends Mapper<User> {
 
-    public User  selectByUsername(@Param("user") User user);
+    public User  selectByUsername(String username);
 }

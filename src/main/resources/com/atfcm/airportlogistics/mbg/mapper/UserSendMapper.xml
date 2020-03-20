@@ -8,7 +8,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="oder_number" property="oderNumber" jdbcType="INTEGER" />
     <result column="sendername" property="sendername" jdbcType="VARCHAR" />
-    <result column="phone_number" property="phoneNumber" jdbcType="INTEGER" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
     <result column="province" property="province" jdbcType="VARCHAR" />
     <result column="city" property="city" jdbcType="VARCHAR" />
     <result column="area" property="area" jdbcType="VARCHAR" />

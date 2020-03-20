@@ -13,7 +13,7 @@ public class UserSend {
     private String sendername;
 
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     private String province;
 
@@ -71,14 +71,14 @@ public class UserSend {
     /**
      * @return phone_number
      */
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
     /**
      * @param phoneNumber
      */
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -150,5 +150,20 @@ public class UserSend {
      */
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "UserSend{" +
+                "id=" + id +
+                ", oderNumber=" + oderNumber +
+                ", sendername='" + sendername + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", userId=" + userId +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

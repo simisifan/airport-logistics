@@ -13,126 +13,93 @@ public class UserRecipe {
     private String recipename;
 
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private String recipePhoneNumber;
 
-    private String province;
+    private String provinceRecipe;
 
-    private String city;
+    private String cityRecipe;
 
-    private String area;
+    private String areaRecipe;
 
     @Column(name = "send_id")
     private Integer sendId;
 
-    /**
-     * @return id
-     */
+
     public Integer getId() {
         return id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    /**
-     * @return oder_number
-     */
     public String getOderNumber() {
         return oderNumber;
     }
 
-    /**
-     * @param oderNumber
-     */
     public void setOderNumber(String oderNumber) {
         this.oderNumber = oderNumber;
     }
 
-    /**
-     * @return recipename
-     */
     public String getRecipename() {
         return recipename;
     }
 
-    /**
-     * @param recipename
-     */
     public void setRecipename(String recipename) {
         this.recipename = recipename;
     }
 
-    /**
-     * @return phone_number
-     */
-    public Integer getPhoneNumber() {
-        return phoneNumber;
+    public String getRecipePhoneNumber() {
+        return recipePhoneNumber;
     }
 
-    /**
-     * @param phoneNumber
-     */
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setRecipePhoneNumber(String recipePhoneNumber) {
+        this.recipePhoneNumber = recipePhoneNumber;
     }
 
-    /**
-     * @return province
-     */
-    public String getProvince() {
-        return province;
+    public String getProvinceRecipe() {
+        return provinceRecipe;
     }
 
-    /**
-     * @param province
-     */
-    public void setProvince(String province) {
-        this.province = province;
+    public void setProvinceRecipe(String provinceRecipe) {
+        this.provinceRecipe = provinceRecipe;
     }
 
-    /**
-     * @return city
-     */
-    public String getCity() {
-        return city;
+    public String getCityRecipe() {
+        return cityRecipe;
     }
 
-    /**
-     * @param city
-     */
-    public void setCity(String city) {
-        this.city = city;
+    public void setCityRecipe(String cityRecipe) {
+        this.cityRecipe = cityRecipe;
     }
 
-    /**
-     * @return area
-     */
-    public String getArea() {
-        return area;
+    public String getAreaRecipe() {
+        return areaRecipe;
     }
 
-    /**
-     * @param area
-     */
-    public void setArea(String area) {
-        this.area = area;
+    public void setAreaRecipe(String areaRecipe) {
+        this.areaRecipe = areaRecipe;
     }
 
-    /**
-     * @return send_id
-     */
     public Integer getSendId() {
         return sendId;
     }
 
-    /**
-     * @param sendId
-     */
     public void setSendId(Integer sendId) {
         this.sendId = sendId;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRecipe{" +
+                "id=" + id +
+                ", oderNumber='" + oderNumber + '\'' +
+                ", recipename='" + recipename + '\'' +
+                ", recipePhoneNumber=" + recipePhoneNumber +
+                ", provinceRecipe='" + provinceRecipe + '\'' +
+                ", cityRecipe='" + cityRecipe + '\'' +
+                ", areaRecipe='" + areaRecipe + '\'' +
+                ", sendId=" + sendId +
+                '}';
     }
 }

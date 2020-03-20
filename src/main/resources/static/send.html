@@ -113,7 +113,7 @@
             <h1>寄方信息</h1> <span>*为必填项</span>
             <div class="sender">
                 <label style="color: red;">* </label><span>姓名&nbsp;&nbsp;&nbsp;</span>
-                <input type="text" name="senderName" placeholder="请填写联系人姓名"/><br>
+                <input type="text" name="sendername" placeholder="请填写联系人姓名"/><br>
                 <label style="color: red;">* </label><span>手机号</span>
                 <input type="phone" name="phoneNumber" placeholder="请填写手机号码"/><br>
 
@@ -140,15 +140,15 @@
             <h1>收方信息</h1> <span>*为必填项</span>
             <div class="sender">
                 <label style="color: red;">* </label><span>姓名&nbsp;&nbsp;&nbsp;</span>
-                <input type="text" name="senderName" placeholder="请填写联系人姓名"/><br>
+                <input type="text" name="recipename" placeholder="请填写联系人姓名"/><br>
                 <label style="color: red;">* </label><span>手机号</span>
-                <input type="phone" name="phoneNumber" placeholder="请填写手机号码"/><br>
+                <input type="phone" name="recipePhoneNumber" placeholder="请填写手机号码"/><br>
 
                 <div data-toggle="distpicker">
                     <label style="color: red;">* </label> <span>省市区(县)</span>
-                    <select class="sel1" data-province="浙江省"></select>
-                    <select class="sel2" data-city="杭州市"></select>
-                    <select class="sel3" data-district="西湖区"></select>
+                    <select class="csel1" data-province="浙江省"></select>
+                    <select class="csel2" data-city="杭州市"></select>
+                    <select class="csel3" data-district="西湖区"></select>
                 </div>
 
 
@@ -206,12 +206,20 @@
             if (index == 3) {
                 var a = confirm('确定提交?')
                 if (a) {
+                    /*发件人信息*/
                     var province = '&province=' + $('.sel1').val();
                     var city = '&city=' + $('.sel2').val();
                     var area = '&area=' + $('.sel3').val();
-                    var param = $('#form-main').serialize() + province + city + area;
+
+                    /*收件人信息*/
+                    var cprovince = '&provinceRecipe=' + $('.csel1').val();
+                    var ccity = '&cityRecipe=' + $('.csel2').val();
+                    var carea = '&areaRecipe=' + $('.csel3').val();
+
+
+                    var param = $('#form-main').serialize() + province + city + area+ cprovince + ccity + carea;
                     alert(param);
-                    $.post('send', param, function (data) {
+                    $.post('/user/send', param, function (data) {
 
                     })
                 } else {

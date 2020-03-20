@@ -8,10 +8,10 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="phone_number" property="phoneNumber" jdbcType="INTEGER" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
   </resultMap>
 
   <select id="selectByUsername"  resultMap="BaseResultMap">
-    select  * from  table_user where username = #{param1.username};
+    select  * from  table_user where username = #{username};
   </select>
 </mapper>

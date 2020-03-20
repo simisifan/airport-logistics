@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Service
-public class UserService implements com.atfcm.airportlogistics.service.UserService {
+public class UserServiceImpl implements com.atfcm.airportlogistics.service.UserService {
 
     @Autowired
     UserMapper userMapper;
@@ -24,7 +26,7 @@ public class UserService implements com.atfcm.airportlogistics.service.UserServi
     @Transactional(rollbackFor = RuntimeException.class)
     public boolean regist(User user) {
         //1.判断用户名是否存在
-        Boolean exist = userMapper.select(user).isEmpty() ? false: true;
+        Boolean exist = userMapper.selectByUsername(user.getUsername())==null ? false: true;
 
         if(exist) {
             //2.存在失败
@@ -36,4 +38,23 @@ public class UserService implements com.atfcm.airportlogistics.service.UserServi
 
         return true;
     }
+
+
+
+    /**
+     * 登陆功能
+     * */
+    @Override
+    public Boolean login(User user, HttpServletRequest request) {
+        //1.检查用户名和密码是否正确
+        Boolean login= userMapper.select(user).isEmpty() ? false: true;
+       if(login){
+           //2.用户名密码正确  session加入isLogin字段,设置true
+           request.getSession().setAttribute("isLogin", "plain_user");
+           return true;
+       }else{
+           return  false;
+       }
+    }
+
 }
