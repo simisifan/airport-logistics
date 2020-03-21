@@ -8,7 +8,7 @@ public class UserSend {
     private Integer id;
 
     @Column(name = "oder_number")
-    private Integer oderNumber;
+    private String oderNumber;
 
     private String sendername;
 
@@ -43,14 +43,14 @@ public class UserSend {
     /**
      * @return oder_number
      */
-    public Integer getOderNumber() {
+    public String getOderNumber() {
         return oderNumber;
     }
 
     /**
      * @param oderNumber
      */
-    public void setOderNumber(Integer oderNumber) {
+    public void setOderNumber(String oderNumber) {
         this.oderNumber = oderNumber;
     }
 

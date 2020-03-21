@@ -2,13 +2,20 @@ package com.atfcm.airportlogistics.controller;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.lang.ObjectId;
+import cn.hutool.core.util.HashUtil;
 import com.atfcm.airportlogistics.common.Myexception.MyNullException;
 import com.atfcm.airportlogistics.common.ResultInfo;
 import com.atfcm.airportlogistics.mbg.bean.User;
 import com.atfcm.airportlogistics.mbg.bean.UserRecipe;
 import com.atfcm.airportlogistics.mbg.bean.UserSend;
+import com.atfcm.airportlogistics.service.UserRicipeService;
+import com.atfcm.airportlogistics.service.UserSendService;
 import com.atfcm.airportlogistics.service.UserService;
 import org.apache.ibatis.annotations.Param;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +31,16 @@ import java.net.Socket;
 
 @Controller
 public class UserController {
-
+  private  final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserSendService userSendService;
+
+    @Autowired
+    UserRicipeService userRicipeService;
+
     /**
     * 验证码生成
     * */
@@ -109,9 +123,34 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/user/send")
-    public ResultInfo info(UserSend userSend,UserRecipe userRecipe){
-        System.out.println(userSend);
-        System.out.println(userRecipe);
-        return null;
+    public ResultInfo info(UserSend userSend,UserRecipe userRecipe,HttpServletRequest request,ResultInfo info){
+        //1.生成初始订单号
+        String id = ObjectId.next();
+        //2. 订单号压缩升级
+        String format = DateUtil.format( DateUtil.date(), "yyyyMMdd");
+        String orderNumber = format + String.valueOf(HashUtil.fnvHash(id));
+        logger.info("哈希后生成的订单号是"+orderNumber);
+
+        //3.订单号封装
+        userSend.setOderNumber(orderNumber);
+        userRecipe.setOderNumber(orderNumber);
+
+
+        //4.用户id封装
+        userSend.setUserId((Integer) request.getSession().getAttribute("isLogin"));
+        logger.info("封装后的userSend对象是"+userSend);
+        logger.info("封装后的recipe对象是"+userRecipe);
+
+
+        //5.数据存入数据库
+        Boolean result = userService.sendForm(userSendService, userRicipeService, userSend, userRecipe);
+        if (result){
+            info.setFlag(true);
+            info.setData("恭喜您预约成功,单号:"+orderNumber);
+        }else {
+            info.setFlag(false);
+            info.setErrorMsg("预约失败...");
+        }
+        return info;
     }
 }

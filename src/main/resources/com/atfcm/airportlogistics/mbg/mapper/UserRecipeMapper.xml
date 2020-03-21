@@ -12,6 +12,5 @@
     <result column="province" property="provinceRecipe" jdbcType="VARCHAR" />
     <result column="city" property="cityRecipe" jdbcType="VARCHAR" />
     <result column="area" property="areaRecipe" jdbcType="VARCHAR" />
-    <result column="send_id" property="sendId" jdbcType="INTEGER" />
   </resultMap>
 </mapper>

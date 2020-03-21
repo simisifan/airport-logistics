@@ -156,7 +156,7 @@
         </div>
 
         <!-- 完成下单 -->
-        <div class="form-item">
+        <div class="form-item result" style="text-align: center; line-height: 396px" >
             <img src="img/banner3.png" alt="">
         </div>
     </div>
@@ -210,6 +210,7 @@
                     var province = '&province=' + $('.sel1').val();
                     var city = '&city=' + $('.sel2').val();
                     var area = '&area=' + $('.sel3').val();
+                    var type = '&type=' + $('.sel4').val();
 
                     /*收件人信息*/
                     var cprovince = '&provinceRecipe=' + $('.csel1').val();
@@ -217,10 +218,12 @@
                     var carea = '&areaRecipe=' + $('.csel3').val();
 
 
-                    var param = $('#form-main').serialize() + province + city + area+ cprovince + ccity + carea;
+                    var param = $('#form-main').serialize() + province + city + area+ cprovince + ccity + carea +type;
                     alert(param);
                     $.post('/user/send', param, function (data) {
-
+                            if(data.flag){
+                                $('.result').html(data.data);
+                            }
                     })
                 } else {
                     location.href = 'send.html';

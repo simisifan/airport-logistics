@@ -15,14 +15,16 @@ public class UserRecipe {
     @Column(name = "phone_number")
     private String recipePhoneNumber;
 
+    @Column(name = "province")
     private String provinceRecipe;
 
+    @Column(name = "city")
     private String cityRecipe;
 
+    @Column(name = "area")
     private String areaRecipe;
 
-    @Column(name = "send_id")
-    private Integer sendId;
+
 
 
     public Integer getId() {
@@ -81,13 +83,7 @@ public class UserRecipe {
         this.areaRecipe = areaRecipe;
     }
 
-    public Integer getSendId() {
-        return sendId;
-    }
 
-    public void setSendId(Integer sendId) {
-        this.sendId = sendId;
-    }
 
     @Override
     public String toString() {
@@ -99,7 +95,6 @@ public class UserRecipe {
                 ", provinceRecipe='" + provinceRecipe + '\'' +
                 ", cityRecipe='" + cityRecipe + '\'' +
                 ", areaRecipe='" + areaRecipe + '\'' +
-                ", sendId=" + sendId +
                 '}';
     }
 }
