@@ -6,6 +6,8 @@ import com.atfcm.airportlogistics.service.UserRicipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserRecipeServiceImp  implements UserRicipeService {
     @Autowired
@@ -18,5 +20,10 @@ public class UserRecipeServiceImp  implements UserRicipeService {
         }else {
             return false;
         }
+    }
+
+    @Override
+    public List<UserRecipe> selectAllRecipe() {
+        return userRecipeMapper.selectAll();
     }
 }

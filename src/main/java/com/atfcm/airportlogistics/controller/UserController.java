@@ -121,6 +121,14 @@ public class UserController {
     }
 
 
+    /**
+     * 预约订单接收
+     * @param userSend
+     * @param userRecipe
+     * @param request
+     * @param info
+     * @return
+     */
     @ResponseBody
     @PostMapping("/user/send")
     public ResultInfo info(UserSend userSend,UserRecipe userRecipe,HttpServletRequest request,ResultInfo info){
@@ -153,4 +161,8 @@ public class UserController {
         }
         return info;
     }
+
+
+
+
 }

@@ -6,6 +6,8 @@ import com.atfcm.airportlogistics.service.UserSendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserSenServiceImpl implements UserSendService {
 
@@ -22,5 +24,10 @@ public class UserSenServiceImpl implements UserSendService {
             return false;
         }
 
+    }
+
+    @Override
+    public List<UserSend> selectAllOrders() {
+        return   userSendMapper.selectAll();
     }
 }

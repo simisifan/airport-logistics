@@ -11,7 +11,7 @@
 }
 
 /* 鼠标移动上去显示 */
-.app:hover .qrcode {
+.app:hover + .qrcode {
     /* 方法1 */
     /* display: block; */
 
