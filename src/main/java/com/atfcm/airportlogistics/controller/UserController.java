@@ -145,7 +145,8 @@ public class UserController {
 
 
         //4.用户id封装
-        userSend.setUserId((Integer) request.getSession().getAttribute("isLogin"));
+        /*(Integer) request.getSession().getAttribute("isLogin")*/
+        userSend.setUserId(1);
         logger.info("封装后的userSend对象是"+userSend);
         logger.info("封装后的recipe对象是"+userRecipe);
 

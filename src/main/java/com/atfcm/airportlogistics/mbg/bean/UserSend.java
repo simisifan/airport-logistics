@@ -26,6 +26,16 @@ public class UserSend {
 
     private String type;
 
+    private boolean start;
+
+    public boolean getStart() {
+        return start;
+    }
+
+    public void setStart(boolean start) {
+        this.start = start;
+    }
+
     /**
      * @return id
      */
@@ -156,14 +166,15 @@ public class UserSend {
     public String toString() {
         return "UserSend{" +
                 "id=" + id +
-                ", oderNumber=" + oderNumber +
+                ", oderNumber='" + oderNumber + '\'' +
                 ", sendername='" + sendername + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", province='" + province + '\'' +
                 ", city='" + city + '\'' +
                 ", area='" + area + '\'' +
                 ", userId=" + userId +
                 ", type='" + type + '\'' +
+                ", start=" + start +
                 '}';
     }
 }

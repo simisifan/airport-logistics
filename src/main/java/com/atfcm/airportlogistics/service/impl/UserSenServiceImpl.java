@@ -1,5 +1,6 @@
 package com.atfcm.airportlogistics.service.impl;
 
+import com.atfcm.airportlogistics.common.OrderForm;
 import com.atfcm.airportlogistics.mbg.bean.UserSend;
 import com.atfcm.airportlogistics.mbg.mapper.UserSendMapper;
 import com.atfcm.airportlogistics.service.UserSendService;
@@ -29,5 +30,15 @@ public class UserSenServiceImpl implements UserSendService {
     @Override
     public List<UserSend> selectAllOrders() {
         return   userSendMapper.selectAll();
+    }
+
+    @Override
+    public List<OrderForm> selectAllSendRecip() {
+        return  userSendMapper.getAllOrderForm();
+    }
+
+    @Override
+    public int updateStart(String oder) {
+        return  userSendMapper.updateStart(oder);
     }
 }

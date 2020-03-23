@@ -38,6 +38,8 @@ public class OrderForm  {
 
     private String areaRecipe;
 
+    private Boolean start;
+
     @Override
     public String toString() {
         return "OrderForm{" +
@@ -56,6 +58,14 @@ public class OrderForm  {
                 ", cityRecipe='" + cityRecipe + '\'' +
                 ", areaRecipe='" + areaRecipe + '\'' +
                 '}';
+    }
+
+    public Boolean getStart() {
+        return start;
+    }
+
+    public void setStart(Boolean start) {
+        this.start = start;
     }
 
     public Integer getId() {

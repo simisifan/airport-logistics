@@ -13,4 +13,6 @@
     <result column="city" property="cityRecipe" jdbcType="VARCHAR" />
     <result column="area" property="areaRecipe" jdbcType="VARCHAR" />
   </resultMap>
+
+
 </mapper>

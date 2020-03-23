@@ -9,4 +9,5 @@ public interface UserRicipeService {
 
     public Boolean inserUserRecipe(UserRecipe userRecipe);
     public List<UserRecipe> selectAllRecipe();
+
 }
