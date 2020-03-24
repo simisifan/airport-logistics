@@ -48,6 +48,7 @@
     </style>
 </head>
 
+
 <body>
 <!--引入抽取的topbar-->
 <div th:replace="commons/muban :: topbar"></div>
@@ -60,26 +61,27 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" >
 
             <!--需要区分是订单修改还是添加；-->
-            <form th:action="@{/oder}" method="post" id="fm" >
+            <form th:action="@{/order}" method="post" id="fm" >
                 <!--发送put请求修改员工数据-->
                 <!--
                 1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
                 2、页面创建一个post表单
                 3、创建一个input项，name="_method";值就是我们指定的请求方式
                 -->
-                <input type="hidden" name="_method" value="#" th:if="${emp!=null}" th:value="put"/>
-                <input type="hidden" name="id" th:if="${emp!=null}" th:value="${emp.id}">
+
+                <input id="hidden" type="hidden" name="_method" value="#" th:if="${orderForm!=null}" th:value="put"/>
+                <input type="hidden" name="orderNumber" th:if="${orderForm!=null}" th:value="${orderForm.oderNumber}">
 
                 <div class="form-group">
                     <label style="color: red;">* </label><label>寄件人</label>
                     <input name="sendername" type="text" class="form-control" placeholder="寄件人姓名"
-                           th:value="${emp!=null}?${emp.lastName}">
+                           th:value="${orderForm!=null}?${orderForm.sendername}">
                 </div>
 
                 <div class="form-group">
                     <label style="color: red;">* </label><label>手机号</label>
                     <input name="phoneNumber" type="text" class="form-control" placeholder="寄件人手机号"
-                           th:value="${emp!=null}?${emp.email}">
+                           th:value="${orderForm!=null}?${orderForm.phoneNumber}">
                 </div>
 
 
@@ -87,12 +89,12 @@
                     <label>地址</label>
                     <div data-toggle="distpicker">
                         <label style="color: red;">* </label> <span>省市区(县)</span>
-                        <select class="sel1 " name="province" data-province="浙江省"></select>
-                        <select class="sel2" name="city" data-city="杭州市"></select>
-                        <select class="sel3" name="area" data-district="西湖区"></select>
+                        <select class="sel1 " th:if="${orderForm!=null}" th:attr="data-province=${orderForm.province}" name="province" data-province="浙江省"></select>
+                        <select class="sel2" th:if="${orderForm!=null}" th:attr="data-city=${orderForm.city}" name="city" data-city="杭州市"></select>
+                        <select class="sel3"  th:if="${orderForm!=null}" th:attr="data-district=${orderForm.area}" name="area" data-district="西湖区"></select>
                     </div><br>
                     <span>产品类型</span>
-                    <select name="type" class="sel4">
+                    <select  th:if="${orderForm!=null}" th:value="${orderForm.type}" name="type" class="sel4">
                         <option>电子产品</option>
                         <option>医疗设别</option>
                         <option>宠物运输</option>
@@ -110,13 +112,13 @@
                 <div class="form-group">
                     <label style="color: red;">* </label><label>收件人</label>
                     <input name="recipename" type="text" class="form-control" placeholder="寄件人姓名"
-                           th:value="${emp!=null}?${emp.lastName}">
+                           th:value="${orderForm!=null}?${orderForm.recipename}">
                 </div>
 
                 <div class="form-group">
                     <label style="color: red;">* </label><label>手机号</label>
                     <input name="recipePhoneNumber" type="text" class="form-control" placeholder="寄件人手机号"
-                           th:value="${emp!=null}?${emp.email}">
+                           th:value="${orderForm!=null}?${orderForm.recipePhoneNumber}">
                 </div>
 
 
@@ -126,15 +128,15 @@
 
                     <div data-toggle="distpicker">
                         <label style="color: red;">* </label> <span>省市区(县)</span>
-                        <select class="sel1 " name="provinceRecipe" data-province="浙江省"></select>
-                        <select class="sel2" name="cityRecipe" data-city="杭州市"></select>
-                        <select class="sel3" name="areaRecipe" data-district="西湖区"></select>
+                        <select class="sel1 " th:if="${orderForm!=null}" th:attr="data-province=${orderForm.provinceRecipe}" name="provinceRecipe" data-province="浙江省"></select>
+                        <select class="sel2" th:if="${orderForm!=null}" th:attr="data-city=${orderForm.cityRecipe}" name="cityRecipe" data-city="杭州市"></select>
+                        <select class="sel3" th:if="${orderForm!=null}" th:attr="data-district=${orderForm.areaRecipe}" name="areaRecipe" data-district="西湖区"></select>
                     </div>
 
                 </div>
 
 
-                <button id="bt" type="submit" class="btn btn-primary" th:text="${emp!=null}?'修改':'添加'">添加</button>
+                <button id="bt" type="submit" class="btn btn-primary" th:text="${orderForm!=null}?'修改':'添加'">添加</button>
             </form>
         </main>
     </div>
@@ -162,12 +164,97 @@
 
 <script >
     $('#bt').click(function () {
-        var param = $('#fm').serialize();
-        $.post('/user/send', param, function (data) {
-            if(data.flag){
-               alert('插入成功');
-            }
-        })
-        return false;
+        if( $('#hidden').val()!=='put'){
+
+            var param = $('#fm').serialize();
+            $.post('/user/send', param, function (data) {
+                if(data.flag){
+                    alert('操作成功');
+                }
+            })
+            return false;
+
+        }else {
+            alert('等于put')
+            $('#fm').submit();
+        }
+
     })
 </script>
+
+<!--   本想  插数据  结果三级联动  算了
+<script>
+    var pname = [{"name":"尚霖"},{"name":"烨伟"},{"name":"尹智"},{"name":"清凌"},{"name":"墨含"},{"name":"笑薇"},{"name":"丰逸"},{"name":"俊誉"},{"name":"彦军"},{"name":"博豪"},{"name":"茹雪"},{"name":"瀚聪"},{"name":"孜绍"},{"name":"嫦曦"},{"name":"琪煜"},{"name":"墨含"},{"name":"银涵"},{"name":"志宸"},{"name":"瀚聪"},{"name":"云哲"}]
+    var pphoneNumber =[{"phoneNumber":"4766104578"},{"phoneNumber":"1328235154"},{"phoneNumber":"4231207265"},{"phoneNumber":"9509142266"},{"phoneNumber":"3236518457"},{"phoneNumber":"6247768520"},{"phoneNumber":"7996800449"},{"phoneNumber":"2761126710"},{"phoneNumber":"4457186480"},{"phoneNumber":"5984576927"},{"phoneNumber":"8784770398"},{"phoneNumber":"8583292517"},{"phoneNumber":"1702423266"},{"phoneNumber":"4959415952"},{"phoneNumber":"5984955735"},{"phoneNumber":"5132690241"},{"phoneNumber":"8505125450"},{"phoneNumber":"8657936061"},{"phoneNumber":"5529234738"},{"phoneNumber":"5971767857"}]
+    var province=["广东","山东","北京","上海","武汉","河北","西藏","广西","江苏","河南"]
+    var city=["xxx"]
+    var area=["xxx"]
+    var ptype=[{"ty":'电子'},{"ty":'食品'},{"ty":'宠物'},{"ty":'其他'},{"ty":'仪器'},]
+
+    /*
+    * 根据字段生成 一个参数
+    * */
+    function params(para,dictionary,dicsprop,radomnumber){
+        var myparam;
+        //字典随机数
+        var  nn = Math.round(Math.random()*radomnumber);
+        //随机字典数生成
+        var result= dictionary[nn][dicsprop];
+
+        //拼串
+        myparam =   para+'=' +result+'&';
+        console.log('生成的字符串是'+myparam);
+        return myparam;
+    }
+/*
+    // 参数处理成数组
+    var param = $('#fm').serialize();
+    var splidparm = param.split('&');
+
+    //参数赋值
+    splidparm.forEach(function (item, idnex, array) {
+
+        console.log(item)     // 1 2 3 4 5 6
+        console.log(array)    // [1, 2, 3, 4, 5, 6]
+    })
+*/
+/*
+* 0: "sendername="
+1: "phoneNumber="
+2: "type=%E7%94%B5%E5%AD%90%E4%BA%A7%E5%93%81"
+3: "recipename="
+4: "recipePhoneNumber="
+*
+*
+*
+* */
+    var cprovince = '&provinceRecipe=xxx省份'
+    var ccity = '&cityRecipe=xxxx市'
+    var carea = '&areaRecipe='
+
+        var  sendparam;
+    for(var i=1; i<100;i++){
+        sendparam='';
+        sendparam = sendparam +
+        params("sendername",pname,'name',20) +
+
+        params("phoneNumber",pphoneNumber,'phoneNumber',20) +
+
+        params("type",ptype,'ty',4) +
+
+        params("type",ptype,'ty',4) +
+
+
+
+
+
+        $.post('/user/send', params, function (data) {
+            if(data.flag){
+                console.log('插入成功');
+            }
+        })
+    }
+
+
+
+</script>-->

@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.atfcm.airportlogistics.mbg.mapper.AdminMapper" >
-  <resultMap id="BaseResultMap" type="com.atfcm.airportlogistics.mbg.bean.Admin" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-  </resultMap>
+<mapper namespace="com.atfcm.airportlogistics.mbg.mapper.AdminMapper">
+    <resultMap id="BaseResultMap" type="com.atfcm.airportlogistics.mbg.bean.Admin">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <resultMap id="formsendMap" type="com.atfcm.airportlogistics.common.OrderForm">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="oder_number" property="oderNumber" jdbcType="VARCHAR"/>
+        <result column="sendername" property="sendername" jdbcType="VARCHAR"/>
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+
+
+        <result column="recipename" property="recipename" jdbcType="VARCHAR"/>
+        <result column="phone_number" property="recipePhoneNumber" jdbcType="VARCHAR"/>
+        <result column="province" property="provinceRecipe" jdbcType="VARCHAR"/>
+        <result column="city" property="cityRecipe" jdbcType="VARCHAR"/>
+        <result column="area" property="areaRecipe" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectByOderNumber" resultMap="formsendMap">
+    SELECT  *
+    FROM table_user_send ts,table_user_recipe tr
+    WHERE ts.`oder_number`=tr.`oder_number`
+    AND ts.`oder_number`=#{oderNumber}
+  </select>
 </mapper>

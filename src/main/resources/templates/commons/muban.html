@@ -22,7 +22,8 @@
     引入sildbar   <div th:replace="commons/muban :: slidbar(activeUri='orders.html')"></div>
 -->
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0" th:fragment="topbar">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="" th:text="'欢迎您管理员'+${#session.getAttribute('isLogin')}"></a>
+    <!--th:text="'欢迎您管理员'+${#session.getAttribute('isLogin')}"-->
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="" ></a>
     <input class="form-control form-control-dark w-10" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">

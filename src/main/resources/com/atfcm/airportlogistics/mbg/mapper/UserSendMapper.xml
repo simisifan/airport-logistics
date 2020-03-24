@@ -20,7 +20,6 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="oder_number" property="oderNumber" jdbcType="VARCHAR" />
     <result column="sendername" property="sendername" jdbcType="VARCHAR" />
     <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
@@ -41,6 +40,8 @@
   <select id="getAllOrderForm"  resultMap="formsendMap">
     SELECT *  FROM  table_user_send  ts,table_user_recipe tr  WHERE  ts.`oder_number`=tr.`oder_number`  ORDER BY ts.`start`
   </select>
+
+
 
 </mapper>
 

@@ -12,9 +12,29 @@
     <!-- Bootstrap core CSS -->
     <link href="../../static/asserts/css/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}"
           rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="/js/bootstrap.min.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="../../static/asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <style>
+        .sb{
+            border: 1px solid red;
+        }
+
+        .nd{
+            display: none;
+        }
+
+        .fenye {
+            z-index: 100;
+            display: block;
+            position: fixed;
+            top: 700px;
+            left: 320px;
+        }
+    </style>
 
 </head>
 
@@ -22,12 +42,12 @@
 <!--导航条-->
 <div th:replace="commons/muban :: topbar"></div>
 
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid" >
+    <div class="row " >
         <div th:replace="commons/muban :: slidbar(activeUri='orders.html')"></div>
 
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" >
             <h2>Section title</h2>
             <h2><a class="btn btn-lg btn-success"  href="#" th:href="@{/order}">添加</a></h2>
             <div class="table-responsive">
@@ -54,12 +74,12 @@
                         <td th:text="${orderForm.getRecipePhoneNumber()}"></td>
                         <td th:text="${orderForm.getProvinceRecipe()}+${orderForm.getCityRecipe()}+${orderForm.areaRecipe}"></td>
                         <td>
-                            <a class="btn btn-sm btn-primary" th:href="@{/orderForm/}+${orderForm.oderNumber}" href="#">编辑</a>/
-                            <button tmp="" class="btn  btn-sm btn-danger deleteBt" th:attr="tmp=@{/od/}+${orderForm.oderNumber}">
+                            <a class="btn btn-sm btn-primary" th:href="@{/order?orderNumber=}+${orderForm.oderNumber}" href="#">编辑</a>/
+                            <button tmp="" class="btn  btn-sm btn-danger deleteBt" th:attr="tmp=@{/od?oderNumber=}+${orderForm.oderNumber}">
                                 删除
                             </button>
 
-                            <button order="" th:class="${orderForm.getStart() ? 'btn-outline-info put': 'btn btn-info put'}"
+                            <button order="" th:class="${orderForm.getStart() ? 'btn-outline-info ': 'btn btn-info put'}"
                                     th:text="${orderForm.getStart() ? '已经确认': '确认发货'}"
                                    class="btn  btn-outline-light put" th:attr=" order=@{/od/}+${orderForm.oderNumber}">
 
@@ -70,17 +90,37 @@
                     </tr>
 
                     </tbody>
+
                 </table>
+                <!--分页-->
+               <div class="container-fluid fenye" >
+                   <div class="row " >
+                       <div class="col-md-2 ">
+                           <a class="btn btn-outline-dark" th:href="@{/orders}" href="#">首页</a>
+                       </div>
+                       <div class="col-md-2 ">
+                           <a class="btn btn-outline-dark" th:href="@{/orders?pn=} + ${info.getPrePage()}" href="#">上一页</a>
+                       </div>
+                       <div class="col-md-2 " >
+                           <a class="btn btn-outline-dark" th:class="${info.getNextPage()==0? 'nd':'btn btn-outline-dark'}" th:href="@{/orders?pn=} + ${info.getNextPage()==0?'3':info.getNextPage()}" href="#">下一页</a>
+                       </div>
+                       <div class="col-md-2 ">
+                           <a class="btn btn-outline-dark" th:href="@{/orders?pn=} + ${info.pages}" href="#">末页</a>
+                       </div>
+
+                   </div>
+               </div>
 
             </div>
         </main>
+
     </div>
 </div>
 
 <!--   删除 -->
 <form action="#" class="deleteForm" method="post">
     <input type="hidden" name="_method" value="delete"/>
-    <button class="btn " type="submit"> 确认提交</button>
+    <button class="btn " type="submit"> </button>
 </form>
 
 
@@ -91,13 +131,7 @@
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
-        th:src="@{/webjars/jquery/3.3.1/jquery.js}" ></script>
-<script type="text/javascript" th:src="@{/asserts/js/popper.min.js}"
-        src="../../static/asserts/js/popper.min.js"></script>
-<script type="text/javascript" th:src="@{/asserts/js/bootstrap.min.js}"
-        src="../../static/asserts/js/bootstrap.min.js"></script>
+
 
 <!-- Icons -->
 <script type="text/javascript" th:src="@{/asserts/js/feather.min.js}"
