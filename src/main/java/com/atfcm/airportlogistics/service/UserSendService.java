@@ -3,6 +3,7 @@ package com.atfcm.airportlogistics.service;
 
 import com.atfcm.airportlogistics.common.OrderForm;
 import com.atfcm.airportlogistics.mbg.bean.UserSend;
+import com.atfcm.airportlogistics.mbg.bean.FlyInfo;
 
 import java.util.List;
 
@@ -13,7 +14,10 @@ public interface UserSendService {
 
     public  List<OrderForm>  selectAllSendRecip();
 
-    public int updateStart(String oder);
+    public int updateStartAndInserttFlyinfo(String oder, FlyInfo flyInfo);
+
+
+    public void updateOrderForm(OrderForm orderForm);
 
 
 }

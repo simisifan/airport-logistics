@@ -38,4 +38,12 @@
     WHERE ts.`oder_number`=tr.`oder_number`
     AND ts.`oder_number`=#{oderNumber}
   </select>
+
+
+    <delete id="deleteSendRecip" parameterType="string">
+        DELETE `table_user_send`,`table_user_recipe`
+ FROM table_user_send  LEFT JOIN table_user_recipe
+ ON `table_user_send`.`oder_number`=`table_user_recipe`.`oder_number`
+ WHERE `table_user_send`.`oder_number`= #{oder_number};
+    </delete>
 </mapper>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.atfcm.airportlogistics.mbg.mapper.flyInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.atfcm.airportlogistics.mbg.bean.flyInfo" >
+<mapper namespace="com.atfcm.airportlogistics.mbg.mapper.FlyInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.atfcm.airportlogistics.mbg.bean.FlyInfo" >
     <!--
       WARNING - @mbg.generated
     -->

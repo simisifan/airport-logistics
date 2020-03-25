@@ -169,14 +169,19 @@
             var param = $('#fm').serialize();
             $.post('/user/send', param, function (data) {
                 if(data.flag){
-                    alert('操作成功');
+                    alert('插入成功');
                 }
             })
             return false;
 
         }else {
-            alert('等于put')
-            $('#fm').submit();
+            var param = $('#fm').serialize();
+            $.post('/order', param, function (data) {
+                if(data.flag){
+                    alert('修改成功');
+                }
+            })
+            return false;
         }
 
     })

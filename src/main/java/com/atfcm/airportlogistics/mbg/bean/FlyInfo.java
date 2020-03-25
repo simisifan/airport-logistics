@@ -4,7 +4,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "fly_info")
-public class flyInfo {
+public class FlyInfo {
     @Id
     private Integer id;
 
@@ -155,5 +155,20 @@ public class flyInfo {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "FlyInfo{" +
+                "id=" + id +
+                ", oderNumber='" + oderNumber + '\'' +
+                ", locationBegin='" + locationBegin + '\'' +
+                ", timeBegin=" + timeBegin +
+                ", locationEnd='" + locationEnd + '\'' +
+                ", timeEnd=" + timeEnd +
+                ", locationNow='" + locationNow + '\'' +
+                ", userId=" + userId +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

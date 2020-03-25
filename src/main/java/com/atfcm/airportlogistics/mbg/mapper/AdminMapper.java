@@ -7,11 +7,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import tk.mybatis.mapper.common.Mapper;
 public interface AdminMapper extends Mapper<Admin> {
-    @Delete("DELETE ts,tr FROM table_user_send  \n" +
-            "AS ts LEFT JOIN table_user_recipe AS tr \n" +
-            "ON ts.`oder_number`=tr.`oder_number` \n" +
-            "WHERE ts.`oder_number`=#{oderNumber}")
-    public  int deleteSendRecip(String oderNumber);
+
+    public  int deleteSendRecip(String oder_number);
 
 
     public OrderForm selectByOderNumber(String oderNumber);
