@@ -38,6 +38,51 @@
             font-size: small;
             color: black;
         }
+
+        .orderSearch{
+            position: absolute;
+            overflow: hidden;
+            width: 350px;
+            height: 38px;/*250*/
+            bottom: 0px;
+            top: 680px;
+            left: 10px;
+
+            border: 1px dotted #ff41ce;
+            background-color: antiquewhite ;
+
+            transition: height 0.8s;
+            z-index: 10;
+        }
+
+
+        .search-input{
+             width: 300px;
+             height: 35px;
+             border: 1px solid #ff41ce;
+             background-color: antiquewhite ;
+            /* float: left;*/
+         }
+
+        .search-btn{
+            width: 50px;
+            height: 45px;
+
+            background-color: #e8b3ff;
+            border-radius: 50%;
+           /* float: left;*/
+            /*文字居中两部曲*/
+            text-align: center;
+            /*垂直居中和盒子一样高*/
+            line-height: 35px;
+        }
+
+        .adme{
+            height: 250px
+        }
+        .lo{
+            height: 38px
+        }
     </style>
 
 </head>
@@ -174,6 +219,17 @@
     </div>
 </div>
 
+
+<!--订单查询-->
+<div class="orderSearch sb">
+    <input class="search-input" placeholder="请输入订单号" />
+    <btn class="btn-default btn-sm " id="sbt" href="#">搜索</btn>
+    <div>
+        <span id="result" style="margin-top: 50px"></span>
+    </div>
+
+</div>
+
 <!-- 页脚 -->
 <div class="container-fluid">
 
@@ -185,3 +241,28 @@
 </body>
 
 </html>
+<script>
+    $('#sbt').click(function () {
+        const orderNumber = $('.search-input').val();
+
+        $.get('/user/order?'+'orderNumber='+orderNumber, function (data) {
+            if (data.flag) {
+
+                $('.orderSearch').removeClass('lo').addClass("adme")
+                $('#result').text('您的货物在这里-->'+data.data)
+            }else {
+                $('.orderSearch').removeClass('lo').addClass("adme")
+                $('#result').text("查询失败")
+            }
+        })
+
+        }
+    )
+
+    $('body').click(function () {
+
+        $('.orderSearch').addClass("lo")
+
+    })
+
+</script>

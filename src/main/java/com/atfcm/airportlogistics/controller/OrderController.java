@@ -5,6 +5,7 @@ import com.atfcm.airportlogistics.common.OrderForm;
 import com.atfcm.airportlogistics.common.ResultInfo;
 import com.atfcm.airportlogistics.mbg.bean.FlyInfo;
 import com.atfcm.airportlogistics.service.AdminService;
+import com.atfcm.airportlogistics.service.FlyInfoService;
 import com.atfcm.airportlogistics.service.UserRicipeService;
 import com.atfcm.airportlogistics.service.UserSendService;
 import com.github.pagehelper.PageHelper;
@@ -26,6 +27,9 @@ public class OrderController {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    FlyInfoService flyInfoService;
 
 
     /*查看所有订单*/
@@ -88,6 +92,8 @@ public class OrderController {
 
     }
 
+
+    /*修改订单全字段*/
     @ResponseBody
     @PutMapping("/order")
     public ResultInfo Update(OrderForm orderForm, ResultInfo info) {
@@ -97,5 +103,24 @@ public class OrderController {
 
     }
 
+    /*查询订单*/
+    @ResponseBody
+    @GetMapping("user/order")
+    public ResultInfo getStatus(String orderNumber,ResultInfo info){
+
+        String search = flyInfoService.orderSearch(orderNumber);
+        if (search != null){
+            info.setFlag(true);
+            info.setData(search);
+            System.out.println(search);
+        }else {
+            info.setFlag(false);
+        }
+        return info;
+
+    }
+
 
 }
+
+

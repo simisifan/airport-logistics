@@ -15,4 +15,8 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
   </resultMap>
+
+  <select id="selectByOderNumber" resultType="string">
+        SELECT location_now FROM fly_info WHERE oder_number = #{orderNumber}
+  </select>
 </mapper>
