@@ -110,6 +110,12 @@
             <version>1.2.3</version>
         </dependency>
 
+        <!--redis 测试-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.8.0</version>
+        </dependency>
 
     </dependencies>
 
